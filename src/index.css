@@ -1,13 +1,44 @@
+html,
+body,
+#root {
+    height: 100%;
+    /* background-color: #8c0a17;
+    background-image: linear-gradient(#8c0a17, #d7181f); */
+    margin: 0px;
+    padding: 0px;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+@font-face {
+    font-weight: 90;
+    font-family: sitefont;
+    src: url('/src/assets/fonts/sitefont.otf');
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url('/src/assets/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: PoppinsLight;
+    src: url('/src/assets/fonts/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: AmpleSoft;
+    src: url('/src/assets/fonts/AmpleSoftProMedium.ttf');
 }
