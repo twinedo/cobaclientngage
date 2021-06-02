@@ -1,21 +1,19 @@
 .sidenav {
-    // flex: 0 0 380px!important;
-    width: 380px !important;
-
+    width: 220px;
+    background-color: #011627;
     position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
+    z-index: 10;
+    /* left: ; */
     height: 100%;
-    overflow: auto;
-    overflow-x: hidden;
-    box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
-
+    /* padding: 0 10px; */
+    transition: all 0.7s;
+    overflow: hidden;
+    word-break: keep-all;
     background-image: linear-gradient(#8c0018, #d7181f);
 
     &.active {
         left: 0;
-        width: 50px !important;
+        width: 50px;
         overflow: hidden;
         word-break: keep-all;
     }
