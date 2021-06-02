@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import './welcome.scss';
+import './login.scss';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -11,6 +11,8 @@ import {
     IoEyeOutline,
     IoCloseCircleOutline,
 } from 'react-icons/io5';
+import { LoginHandler } from '../../config/handler/LoginHandler';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles({
     drawerWelcome: {
@@ -42,8 +44,9 @@ const useStyles = makeStyles({
     },
 });
 
-const Welcome: FC = () => {
+const Login: FC = () => {
     const classes = useStyles();
+    const history = useHistory();
 
     const [pageState, setPageState] = useState('page1');
 
@@ -51,8 +54,8 @@ const Welcome: FC = () => {
 
     const [checkBox, setCheckBox] = useState(false);
 
-    const [fieldUsername, setFieldUsername] = useState('');
-    const [fieldPassword, setFieldPassword] = useState('');
+    const [fieldUsername, setFieldUsername] = useState('omama@getnada.com');
+    const [fieldPassword, setFieldPassword] = useState('11111111');
     const [showPass, setShowPass] = useState(false);
 
     const [errorFieldName, setErrorFieldName] = useState(false);
@@ -73,6 +76,22 @@ const Welcome: FC = () => {
         } else {
             setFieldPassword(text);
             setErrorFieldPass(false);
+        }
+    };
+
+    const onLogin = async () => {
+        try {
+            const response = await LoginHandler({
+                username: 'omama@getnada.com',
+                password: '11111111',
+            });
+            if (response.code === '001') {
+                console.log('ressdadwdf', response);
+                history.replace('/welcome');
+                window.location.reload();
+            }
+        } catch (error) {
+            console.log('error', error);
         }
     };
 
@@ -415,7 +434,10 @@ const Welcome: FC = () => {
                                             Ingat Selalu
                                         </div>
                                     </div>
-                                    <div className={classes.btnLogin}>
+                                    <div
+                                        className={classes.btnLogin}
+                                        onClick={onLogin}
+                                    >
                                         Masuk
                                     </div>
                                     <div
@@ -485,4 +507,4 @@ const Welcome: FC = () => {
     );
 };
 
-export default Welcome;
+export default Login;

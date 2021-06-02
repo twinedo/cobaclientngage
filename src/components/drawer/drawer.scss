@@ -1,0 +1,22 @@
+.sidenav {
+    // flex: 0 0 380px!important;
+    width: 380px !important;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
+
+    background-image: linear-gradient(#8c0018, #d7181f);
+
+    &.active {
+        left: 0;
+        width: 50px !important;
+        overflow: hidden;
+        word-break: keep-all;
+    }
+}
