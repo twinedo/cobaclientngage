@@ -34,26 +34,21 @@ const LayoutDashboard = () => {
                 isOpen={sidebarIsOpen}
                 setIsOpen={(e) => setSidebarIsOpen(e)}
             />
+            <div className='header-background-2'></div>
 
-            <div
-            // className='wrapper-content'
-            >
-                <div className='wrapper-header'>
-                    {/* <img
+            <div className='wrapper-header'>
+                {/* <img
                         alt='header-logo'
                         src={require('../../assets/images/header.png').default}
                     /> */}
-                </div>
+            </div>
 
-                <div
-                    className={
-                        sidebarIsOpen
-                            ? 'wrapper-content active'
-                            : 'wrapper-content'
-                    }
-                >
-                    <Switch>{getRoutes(routes)}</Switch>
-                </div>
+            <div
+                className={
+                    sidebarIsOpen ? 'wrapper-content active' : 'wrapper-content'
+                }
+            >
+                <Switch>{getRoutes(routes)}</Switch>
             </div>
         </div>
     );

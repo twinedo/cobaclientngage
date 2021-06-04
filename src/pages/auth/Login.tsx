@@ -87,7 +87,7 @@ const Login: FC = () => {
             });
             if (response.code === '001') {
                 console.log('ressdadwdf', response);
-                history.replace('/welcome');
+                history.replace('/home');
                 window.location.reload();
             }
         } catch (error) {
