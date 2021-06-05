@@ -125,14 +125,19 @@ const Login: FC = () => {
                         />
                     </div>
                     <div className='navbar-welcome'>
-                        <div
+                        <a
                             style={{
                                 color:
                                     pageState === 'page1' ? 'white' : 'black',
+                                cursor: 'pointer',
                             }}
+                            href='https://docs.ngagevideoapi.com/'
+                            rel='noreferrer'
+                            className='menu-subtitle'
+                            target='blank'
                         >
                             API Docs
-                        </div>
+                        </a>
                         {pageState === 'page1' ? (
                             <div
                                 onClick={() => setPageState('page2')}
@@ -141,6 +146,7 @@ const Login: FC = () => {
                                         pageState === 'page1'
                                             ? 'white'
                                             : 'black',
+                                    cursor: 'pointer',
                                 }}
                             >
                                 Contact Us
@@ -153,6 +159,7 @@ const Login: FC = () => {
                                         pageState === 'page1'
                                             ? 'white'
                                             : 'black',
+                                    cursor: 'pointer',
                                 }}
                             >
                                 Login
@@ -224,8 +231,9 @@ const Login: FC = () => {
                                     value={fieldUsername}
                                 />
                                 <div
-                                    className={classes.btnLogin}
-                                    style={{ width: '90%' }}
+                                    // className={classes.btnLogin}
+                                    className='btn-contact-us'
+                                    style={{ width: '100%' }}
                                 >
                                     Submit
                                 </div>
@@ -289,14 +297,16 @@ const Login: FC = () => {
                                     </div>
                                 </div>
                                 <div
-                                    className={classes.btnLogin}
-                                    style={{ width: '50%', alignSelf: 'start' }}
+                                    // className={classes.btnLogin}
+                                    className='btn-contact-us'
+                                    // style={{ width: '50%', alignSelf: 'start' }}
                                 >
                                     Facebook
                                 </div>
                                 <div
-                                    className={classes.btnLogin}
-                                    style={{ width: '50%', alignSelf: 'start' }}
+                                    className='btn-contact-us'
+                                    // className={classes.btnLogin}
+                                    // style={{ width: '50%', alignSelf: 'start' }}
                                 >
                                     Instagram
                                 </div>

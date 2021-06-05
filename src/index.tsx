@@ -4,6 +4,7 @@ import './index.css';
 import './styles/global.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css';
 
 import { BrowserRouter } from 'react-router-dom';
 

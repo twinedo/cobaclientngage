@@ -30,7 +30,21 @@ const Drawer: FC<Props> = ({ isOpen, setIsOpen }) => {
             <div className='div-under-sidenav'>
                 <ul className={isOpen ? 'ul active' : 'ul'}>
                     <div style={{ textAlign: 'center' }}>
-                        {!isOpen ? 'Disini Logo' : ''}
+                        {!isOpen ? (
+                            <img
+                                src={
+                                    require('../../assets/images/logo-white.png')
+                                        .default
+                                }
+                                alt='logo'
+                                className='img-logo-drawer'
+                            />
+                        ) : (
+                            <div
+                                className='img-logo-drawer'
+                                style={{ height: 81 }}
+                            />
+                        )}
                     </div>
                     <li>
                         <NavLink
@@ -94,19 +108,18 @@ const Drawer: FC<Props> = ({ isOpen, setIsOpen }) => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink
-                            to='/documentation'
+                        <a
                             className={isOpen ? 'link-btn active' : 'link-btn'}
-                            activeStyle={
-                                isOpen ? onActiveCssClose : onActiveCssOpen
-                            }
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href='https://docs.ngagevideoapi.com/'
                         >
                             <ImNewspaper
                                 size={20}
                                 style={{ marginRight: 20 }}
                             />
                             Documentation
-                        </NavLink>
+                        </a>
                     </li>
                 </ul>
             </div>

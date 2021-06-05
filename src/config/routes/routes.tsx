@@ -33,12 +33,6 @@ const routes = [
         component: () => <CallMonitoring />,
         isExact: true,
     },
-    {
-        path: '/documentation',
-        name: 'Documentation',
-        component: () => <Documentation />,
-        isExact: true,
-    },
 ];
 
 export default routes;
