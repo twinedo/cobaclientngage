@@ -1,7 +1,20 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './home.scss';
+import { Progress } from 'antd';
+import { GetTenantInfo } from '../../config/handler/TenantHandler';
 
 const Home: FC = () => {
+    useEffect(() => {
+        GetTenantInfo('55f7cf9c-e9e5-403a-bd8c-2ba34fda32c4')
+            .then((res) => {
+                console.log('dgawtd', res);
+            })
+            .catch((err) => {
+                console.log('err svf', err);
+            });
+        return () => {};
+    }, []);
+
     return (
         <div className='container-home'>
             <div className='card-content'>
@@ -89,40 +102,38 @@ const Home: FC = () => {
                         <div style={{ color: 'white', marginBottom: 10 }}>
                             Room Quota
                         </div>
-                        <div
-                            style={{
-                                width: 100,
-                                height: 100,
-                                background: 'white',
-                                borderRadius: 50,
-                            }}
+                        <Progress
+                            type='circle'
+                            percent={75}
+                            format={() => (
+                                <span style={{ color: 'white' }}>75 / 100</span>
+                            )}
+                            strokeColor='white'
+                            trailColor='rgb(139, 26, 25)'
                         />
                     </div>
                     <div className='info-2-card'>
                         <div style={{ color: 'white', marginBottom: 10 }}>
                             Time Quota
                         </div>
-                        <div
-                            style={{
-                                width: 100,
-                                height: 100,
-                                background: 'white',
-                                borderRadius: 50,
-                            }}
+
+                        <Progress
+                            type='circle'
+                            percent={75}
+                            format={() => (
+                                <span style={{ color: 'white' }}>
+                                    75 / 100 menit
+                                </span>
+                            )}
+                            strokeColor='white'
+                            trailColor='rgb(139, 26, 25)'
                         />
                     </div>
                     <div className='info-2-card'>
                         <div style={{ color: 'white', marginBottom: 10 }}>
                             API Keys
                         </div>
-                        <div
-                            style={{
-                                width: 100,
-                                height: 100,
-                                background: 'white',
-                                borderRadius: 50,
-                            }}
-                        />
+                        Unlimited
                     </div>
                 </div>
             </div>

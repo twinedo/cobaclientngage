@@ -20,11 +20,11 @@ instance.interceptors.request.use(
 export const HandlerAPI = async (
     url: string,
     method: any,
-    params: any,
-    data: any,
-    headers: any,
-    responType: any,
-    cancelToken: any
+    params?: any,
+    data?: any,
+    headers?: any,
+    responType?: any,
+    cancelToken?: any
 ) => {
     const service = await instance({
         url: url,
