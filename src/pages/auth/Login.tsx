@@ -13,6 +13,8 @@ import {
 } from 'react-icons/io5';
 import { LoginHandler } from '../../config/handler/LoginHandler';
 import { useHistory } from 'react-router';
+import { Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 const useStyles = makeStyles({
     drawerWelcome: {
@@ -95,6 +97,27 @@ const Login: FC = () => {
         }
     };
 
+    const menu = (
+        <Menu>
+            <Menu.Item>
+                <a
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    href='https://www.antgroup.com'
+                >
+                    <img src='https://www.countryflags.io/us/flat/24.png' />{' '}
+                    English
+                </a>
+            </Menu.Item>
+            <Menu.Item style={{ backgroundColor: '#403d3c' }}>
+                <div style={{ color: 'white' }}>
+                    <img src='https://www.countryflags.io/id/flat/24.png' />{' '}
+                    Bahasa Indonesia
+                </div>
+            </Menu.Item>
+        </Menu>
+    );
+
     return (
         <div
             className={
@@ -165,14 +188,27 @@ const Login: FC = () => {
                                 Login
                             </div>
                         )}
-                        <div
+                        {/* <div
                             style={{
                                 color:
                                     pageState === 'page1' ? 'white' : 'black',
                             }}
                         >
-                            Bahasa Indonesia
-                        </div>
+                            Bahasa Indonesia <DownOutlined />
+                        </div> */}
+                        <Dropdown overlay={menu}>
+                            <div
+                                style={{
+                                    color:
+                                        pageState === 'page1'
+                                            ? 'white'
+                                            : 'black',
+                                    cursor: 'pointer',
+                                }}
+                            >
+                                Bahasa Indonesia <DownOutlined />
+                            </div>
+                        </Dropdown>
                     </div>
                 </div>
                 {pageState === 'page2' ? (
