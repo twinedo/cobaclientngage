@@ -1,7 +1,7 @@
 .container-recording {
     display: flex;
     flex-direction: column;
-    background-color: lightblue;
+    // background-color: lightblue;
     // padding: 30px;
     // border-radius: 8px;
 
@@ -26,14 +26,14 @@
                 align-items: center;
                 flex: 1;
                 justify-content: space-between;
-                border: 2px solid red;
+                // border: 2px solid red;
             }
         }
 
         .card-content-title {
             color: #d6171f;
             font-weight: 600;
-            // flex: 1;
+            flex: 1;
             // margin-bottom: 20px;
         }
     }

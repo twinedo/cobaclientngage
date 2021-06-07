@@ -11,26 +11,27 @@ import {
     createStyles,
     makeStyles,
 } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+// import Table from '@material-ui/core/Table';
+// import TableBody from '@material-ui/core/TableBody';
+// import TableCell from '@material-ui/core/TableCell';
+// import TableContainer from '@material-ui/core/TableContainer';
+// import TableHead from '@material-ui/core/TableHead';
+// import TableRow from '@material-ui/core/TableRow';
+// import Paper from '@material-ui/core/Paper';
+import { Pagination, Table } from 'antd';
 
-const StyledTableCell = withStyles((theme: Theme) =>
-    createStyles({
-        head: {
-            backgroundColor: '#F4F2F2',
-            color: 'black',
-        },
-        body: {
-            fontSize: 14,
-            color: 'black',
-        },
-    })
-)(TableCell);
+// const StyledTableCell = withStyles((theme: Theme) =>
+//     createStyles({
+//         head: {
+//             backgroundColor: '#F4F2F2',
+//             color: 'black',
+//         },
+//         body: {
+//             fontSize: 14,
+//             color: 'black',
+//         },
+//     })
+// )(TableCell);
 
 const useStyles = makeStyles({
     table: {
@@ -80,6 +81,116 @@ const rows = [
     ),
 ];
 
+const data = [
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125da',
+        constraints: 'URL: https://jsbin.com/cafihexeja',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 1,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125daadwd',
+        constraints: 'URL: https://jsbin.com/cafihexejaedaaswd',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 2,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125davxdcfs',
+        constraints: 'URL: https://jsbin.com/cafihexejavgsdf',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 3,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125davxdcfs',
+        constraints: 'URL: https://jsbin.com/cafihexejavgsdf',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 4,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125davxdcfs',
+        constraints: 'URL: https://jsbin.com/cafihexejavgsdf',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 5,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125davxdcfs',
+        constraints: 'URL: https://jsbin.com/cafihexejavgsdf',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 6,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125davxdcfs',
+        constraints: 'URL: https://jsbin.com/cafihexejavgsdf',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 7,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125davxdcfs',
+        constraints: 'URL: https://jsbin.com/cafihexejavgsdf',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 8,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125davxdcfs',
+        constraints: 'URL: https://jsbin.com/cafihexejavgsdf',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 9,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125davxdcfs',
+        constraints: 'URL: https://jsbin.com/cafihexejavgsdf',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 10,
+    },
+    {
+        apikey: '184b1615-1ec5-4c46-a0c0-165a3ca125davxdcfs',
+        constraints: 'URL: https://jsbin.com/cafihexejavgsdf',
+        type: 'Web',
+        createdAt: '2021-02-18T11:24:29.521739Z',
+        number: 11,
+    },
+];
+
+const columns = [
+    {
+        title: 'No',
+        dataIndex: 'number',
+        key: 'apikey',
+        sorter: (a: any, b: any) => a.number - b.number,
+    },
+    {
+        title: 'Key',
+        dataIndex: 'apikey',
+        key: 'apikey',
+    },
+    {
+        title: 'Constraints',
+        dataIndex: 'constraints',
+        key: 'apikey',
+    },
+    {
+        title: 'Type',
+        dataIndex: 'type',
+        key: 'apikey',
+    },
+    {
+        title: 'Created At',
+        dataIndex: 'createdAt',
+        key: 'apikey',
+        sorter: true,
+    },
+];
+
 const ApiKeys: FC = () => {
     const classes = useStyles();
 
@@ -96,7 +207,7 @@ const ApiKeys: FC = () => {
                     </div>
                 </div>
                 <div className='card-content-body'>
-                    <TableContainer component={Paper}>
+                    {/* <TableContainer component={Paper}>
                         <Table
                             className={classes.table}
                             aria-label='simple table'
@@ -134,7 +245,23 @@ const ApiKeys: FC = () => {
                                 ))}
                             </TableBody>
                         </Table>
-                    </TableContainer>
+                    </TableContainer> */}
+                    <Table
+                        dataSource={data}
+                        columns={columns}
+                        pagination={{
+                            showTotal: (total, range) =>
+                                `${range[0]}-${range[1]} of ${total} items`,
+                        }}
+                    ></Table>
+                    <Pagination
+                        total={data.length}
+                        showTotal={(total, range) =>
+                            `${range[0]}-${range[1]} of ${total} items`
+                        }
+                        defaultPageSize={10}
+                        defaultCurrent={1}
+                    />
                 </div>
             </div>
         </div>

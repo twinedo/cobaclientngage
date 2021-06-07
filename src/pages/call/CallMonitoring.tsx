@@ -10,6 +10,7 @@ import './callmonitoring.scss';
 import { Input, DatePicker, Table } from 'antd';
 // import reqwest from 'reqwest';
 import axios from 'axios';
+import moment from 'moment';
 
 const columns = [
     {
@@ -101,8 +102,86 @@ const CallMonitoring: FC = () => {
         console.log('wfef');
     };
 
+    const data = [
+        {
+            tenant: 'PT ABC',
+            name: 'ABC Kuy',
+            createdAt: '2021-02-18T11:24:29.521739Z',
+            ended: 'Live',
+            duration: '12 minutes',
+            key: '1',
+        },
+        {
+            tenant: 'PT 123',
+            name: '1q23 a',
+            createdAt: '2021-02-18T11:24:29.521739Z',
+            ended: '2021/02/24 13:54',
+            duration: '12 minutes ago',
+            key: '2',
+        },
+        {
+            tenant: 'PT DEF',
+            name: '1q23 a',
+            createdAt: '2021-02-18T11:24:29.521739Z',
+            ended: '2021/02/24 13:54',
+            duration: '12 minutes ago',
+            key: '3',
+        },
+        {
+            tenant: 'PT XYZ',
+            name: '1q23 a',
+            createdAt: '2021-02-18T11:24:29.521739Z',
+            ended: '2021/02/24 13:54',
+            duration: '12 minutes ago',
+            key: '4',
+        },
+        {
+            tenant: 'PT KLM',
+            name: '1q23 a',
+            createdAt: '2021-02-18T11:24:29.521739Z',
+            ended: '2021/02/24 13:54',
+            duration: '12 minutes ago',
+            key: '5',
+        },
+    ];
+
+    const columns = [
+        {
+            title: 'Tenant',
+            dataIndex: 'tenant',
+            key: 'key',
+            sorter: (a: any, b: any) => a.tenant.localeCompare(b.tenant),
+        },
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'key',
+            sorter: (a: any, b: any) => a.name.localeCompare(b.name),
+        },
+        {
+            title: 'Created',
+            dataIndex: 'createdAt',
+            key: 'key',
+            sorter: (a: any, b: any) =>
+                moment(a.createdAt).unix() - moment(b.createdAt).unix(),
+        },
+        {
+            title: 'Ended',
+            dataIndex: 'ended',
+            key: 'key',
+            sorter: (a: any, b: any) =>
+                moment(a.createdAt).unix() - moment(b.createdAt).unix(),
+        },
+        {
+            title: 'Durations',
+            dataIndex: 'duration',
+            key: 'key',
+            sorter: (a: any, b: any) => a.duration.localeCompare(b.duration),
+        },
+    ];
+
     return (
-        <div className='container-apikeys'>
+        <div className='container-call'>
             <div className='card-content'>
                 <div className='card-content-header'>
                     <div className='card-content-title'>
@@ -128,14 +207,15 @@ const CallMonitoring: FC = () => {
                     </div>
                 </div>
                 <div className='card-content-body'>
-                    <Table
+                    <Table dataSource={data} columns={columns}></Table>
+                    {/* <Table
                         columns={columns}
                         rowKey={(record: any) => record.login.uuid}
                         dataSource={state.data}
                         pagination={state.pagination}
                         loading={state.loading}
                         onChange={handleTableChange}
-                    />
+                    /> */}
                 </div>
             </div>
         </div>

@@ -5,7 +5,8 @@ const instance = axios;
 instance.interceptors.request.use(
     async (config) => {
         var token = localStorage.getItem('@token-ngage-client')
-            ? JSON.parse(localStorage.getItem('@token-ngage-client') || 'null')
+            ? // ? JSON.parse(localStorage.getItem('@token-ngage-client') || 'null')
+              localStorage.getItem('@token-ngage-client') || 'null'
             : null;
         if (token !== null) {
             config.headers.token = `Bearer ${token}`;
