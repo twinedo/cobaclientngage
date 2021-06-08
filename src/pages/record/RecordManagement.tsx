@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
     AiOutlineReload,
     AiOutlineColumnHeight,
@@ -86,6 +86,8 @@ const RecordManagement: FC = () => {
         },
     ];
 
+    const [pageSize, setPageSize] = useState(10);
+
     return (
         <div className='container-recording'>
             <div className='card-content'>
@@ -94,7 +96,7 @@ const RecordManagement: FC = () => {
                         Recording Management
                     </div>
                     <div className='card-content-toolbar'>
-                        <div className='searchbar-wrapper'>
+                        <div style={{ marginRight: 16 }}>
                             <Search
                                 placeholder='input search text'
                                 allowClear
@@ -102,17 +104,37 @@ const RecordManagement: FC = () => {
                                 style={{ width: 200 }}
                             />
                         </div>
-                        <div className='searchbar-wrapper'>
+                        <div style={{ marginRight: 16 }}>
                             <DatePicker onChange={onChangeDate} />
                         </div>
 
-                        <AiOutlineReload size={24} />
-                        <AiOutlineColumnHeight size={24} />
+                        <AiOutlineReload
+                            size={24}
+                            style={{ marginRight: 16 }}
+                        />
+                        <AiOutlineColumnHeight
+                            size={24}
+                            style={{ marginRight: 16 }}
+                        />
                         <AiOutlineSetting size={24} />
                     </div>
                 </div>
                 <div className='card-content-body'>
-                    <Table dataSource={data} columns={columns}></Table>
+                    <Table
+                        dataSource={data}
+                        columns={columns}
+                        pagination={{
+                            showTotal: (total, range) =>
+                                `${range[0]}-${range[1]} of ${total} items`,
+                            pageSize: pageSize,
+                            pageSizeOptions: ['10', '20', '30'],
+                            total: data.length,
+                            showSizeChanger: true,
+                            onShowSizeChange: (_, size: number) => {
+                                setPageSize(size);
+                            },
+                        }}
+                    ></Table>
                 </div>
             </div>
         </div>

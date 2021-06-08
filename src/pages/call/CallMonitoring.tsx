@@ -180,6 +180,8 @@ const CallMonitoring: FC = () => {
         },
     ];
 
+    const [pageSize, setPageSize] = useState(10);
+
     return (
         <div className='container-call'>
             <div className='card-content'>
@@ -188,7 +190,7 @@ const CallMonitoring: FC = () => {
                         Call Monitoring pada 2021-06-11
                     </div>
                     <div className='card-content-toolbar'>
-                        <div className='searchbar-wrapper'>
+                        <div style={{ marginRight: 16 }}>
                             <Search
                                 placeholder='Pencarian Kata'
                                 allowClear
@@ -196,26 +198,44 @@ const CallMonitoring: FC = () => {
                                 style={{ width: 200 }}
                             />
                         </div>
-                        <div className='btn-live'>Live</div>
-                        <div className='searchbar-wrapper'>
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                marginRight: 16,
+                            }}
+                        >
+                            <div className='btn-live'>Live</div>
                             <DatePicker onChange={onChangeDate} />
                         </div>
 
-                        <AiOutlineReload size={24} />
-                        <AiOutlineColumnHeight size={24} />
+                        <AiOutlineReload
+                            size={24}
+                            style={{ marginRight: 16 }}
+                        />
+                        <AiOutlineColumnHeight
+                            size={24}
+                            style={{ marginRight: 16 }}
+                        />
                         <AiOutlineSetting size={24} />
                     </div>
                 </div>
                 <div className='card-content-body'>
-                    <Table dataSource={data} columns={columns}></Table>
-                    {/* <Table
+                    <Table
+                        dataSource={data}
                         columns={columns}
-                        rowKey={(record: any) => record.login.uuid}
-                        dataSource={state.data}
-                        pagination={state.pagination}
-                        loading={state.loading}
-                        onChange={handleTableChange}
-                    /> */}
+                        pagination={{
+                            showTotal: (total, range) =>
+                                `${range[0]}-${range[1]} of ${total} items`,
+                            pageSize: pageSize,
+                            pageSizeOptions: ['10', '20', '30'],
+                            total: data.length,
+                            showSizeChanger: true,
+                            onShowSizeChange: (_, size: number) => {
+                                setPageSize(size);
+                            },
+                        }}
+                    ></Table>
                 </div>
             </div>
         </div>

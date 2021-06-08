@@ -1,7 +1,7 @@
 .container-apikeys {
     display: flex;
     flex-direction: column;
-    background-color: lightblue;
+    // background-color: lightblue;
     // padding: 30px;
     // border-radius: 8px;
 
@@ -24,7 +24,7 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                flex: 1;
+                // flex: 1;
                 justify-content: space-between;
 
                 .add-button {
@@ -35,6 +35,7 @@
                     padding: 5px 15px;
                     background-color: black;
                     color: white;
+                    margin-right: 16px;
                 }
             }
         }
@@ -42,7 +43,7 @@
         .card-content-title {
             color: #d6171f;
             font-weight: 600;
-            flex: 3;
+            // flex: 3;
             // margin-bottom: 20px;
         }
     }
