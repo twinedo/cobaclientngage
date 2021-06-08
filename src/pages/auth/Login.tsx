@@ -15,6 +15,7 @@ import { LoginHandler } from '../../config/handler/LoginHandler';
 import { useHistory } from 'react-router';
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { AiOutlineMenu } from 'react-icons/ai';
 
 const useStyles = makeStyles({
     drawerWelcome: {
@@ -144,7 +145,7 @@ const Login: FC = () => {
                                           .default
                             }
                             alt='logo-navbar.png'
-                            width={200}
+                            className='logo-img'
                         />
                     </div>
                     <div className='navbar-welcome'>
@@ -188,14 +189,6 @@ const Login: FC = () => {
                                 Login
                             </div>
                         )}
-                        {/* <div
-                            style={{
-                                color:
-                                    pageState === 'page1' ? 'white' : 'black',
-                            }}
-                        >
-                            Bahasa Indonesia <DownOutlined />
-                        </div> */}
                         <Dropdown overlay={menu}>
                             <div
                                 style={{
@@ -210,7 +203,24 @@ const Login: FC = () => {
                             </div>
                         </Dropdown>
                     </div>
+                    <div
+                        className={
+                            pageState === 'page1'
+                                ? 'navbar-welcome-burger'
+                                : 'navbar-welcome-burger-white'
+                        }
+                    >
+                        <AiOutlineMenu size={30} />
+                    </div>
                 </div>
+                <div className='burger-menu-wrapper'>
+                    <div className='burger-menu-list'>
+                        <div className='burger-submenu'>API Docs</div>
+                        <div className='burger-submenu'>Contact US</div>
+                        <div className='burger-submenu'>English</div>
+                    </div>
+                </div>
+
                 {pageState === 'page2' ? (
                     <div className='body-welcome-white'>
                         <div className='txt-contactus'>Contact Us</div>
@@ -509,13 +519,12 @@ const Login: FC = () => {
                                     .default
                             }
                             alt='logo-white.png'
-                            height={65}
-                            style={{ marginRight: 30 }}
+                            className='logo-white-img'
                         />
                         <img
                             src='https://ssl.comodo.com/images/seals/sectigo_trust_seal_lg.png'
-                            height={50}
                             alt='secured.png'
+                            className='secured-img'
                         />
                     </div>
                     <div className='footer-menu'>
@@ -546,9 +555,6 @@ const Login: FC = () => {
                     </div>
                 </div>
             </div>
-            {/* <div>Header</div>
-            <div>Body</div>
-            <div>Footer</div> */}
         </div>
     );
 };
