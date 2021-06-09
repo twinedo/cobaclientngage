@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './login.scss';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Drawer from '@material-ui/core/Drawer';
+
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '../../components/input/Input';
 import TextArea from '../../components/textarea/TextArea';
@@ -13,56 +14,27 @@ import {
 } from 'react-icons/io5';
 import { LoginHandler } from '../../config/handler/LoginHandler';
 import { useHistory } from 'react-router';
-import { Menu, Dropdown } from 'antd';
+import { Menu, Dropdown, Drawer } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { AiOutlineMenu } from 'react-icons/ai';
 
-const useStyles = makeStyles({
-    drawerWelcome: {
-        width: '40vw',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-    },
-    txtWelcome: {
-        textAlign: 'center',
-        fontSize: 40,
-        fontFamily: 'AmpleSoft',
-        fontWeight: 700,
-        color: '#606060',
-    },
-    btnLogin: {
-        textAlign: 'center',
-        border: '1px solid black',
-        borderRadius: 12,
-        padding: '4px 11px',
-        backgroundColor: '#d7181f',
-        color: 'white',
-        width: 100,
-        alignSelf: 'center',
-        margin: '20px 0px',
-        cursor: 'pointer',
-    },
-});
-
 const Login: FC = () => {
-    const classes = useStyles();
     const history = useHistory();
 
-    const [pageState, setPageState] = useState('page1');
+    const [pageState, setPageState] = useState<string>('page1');
 
-    const [drawer, setDrawer] = useState(false);
+    const [drawer, setDrawer] = useState<boolean>(false);
 
-    const [checkBox, setCheckBox] = useState(false);
+    const [checkBox, setCheckBox] = useState<boolean>(false);
 
     const [fieldUsername, setFieldUsername] = useState('omama@getnada.com');
     const [fieldPassword, setFieldPassword] = useState('11111111');
-    const [showPass, setShowPass] = useState(false);
+    const [showPass, setShowPass] = useState<boolean>(false);
 
-    const [errorFieldName, setErrorFieldName] = useState(false);
-    const [errorFieldPass, setErrorFieldPass] = useState(false);
+    const [errorFieldName, setErrorFieldName] = useState<boolean>(false);
+    const [errorFieldPass, setErrorFieldPass] = useState<boolean>(false);
+
+    const [showBurgerMenu, setShowBurgerMenu] = useState<boolean>(false);
 
     const onChangeEmail = (text: string) => {
         if (text.length === 0) {
@@ -119,6 +91,28 @@ const Login: FC = () => {
         </Menu>
     );
 
+    const [widthContainer, setWidthContainer] = useState<any>();
+
+    const autoMediaQuery = (MediaQuery: any) => {
+        if (MediaQuery.matches) {
+            // If media query matches
+            setWidthContainer(true);
+        } else {
+            setWidthContainer(false);
+        }
+    };
+
+    useEffect(() => {
+        const MediaQuery = window.matchMedia('(max-width: 768px)');
+        autoMediaQuery(MediaQuery);
+        MediaQuery.addListener(autoMediaQuery);
+        return () => {
+            const MediaQuery = window.matchMedia('(max-width: 768px)');
+            autoMediaQuery(MediaQuery);
+            MediaQuery.addListener(autoMediaQuery);
+        };
+    }, []);
+
     return (
         <div
             className={
@@ -126,6 +120,7 @@ const Login: FC = () => {
                     ? 'container-welcome'
                     : 'container-welcome-white'
             }
+            // ref={refWidth}
         >
             <div
                 className={
@@ -209,17 +204,48 @@ const Login: FC = () => {
                                 ? 'navbar-welcome-burger'
                                 : 'navbar-welcome-burger-white'
                         }
+                        onClick={() => setShowBurgerMenu(!showBurgerMenu)}
                     >
                         <AiOutlineMenu size={30} />
                     </div>
                 </div>
-                <div className='burger-menu-wrapper'>
-                    <div className='burger-menu-list'>
-                        <div className='burger-submenu'>API Docs</div>
-                        <div className='burger-submenu'>Contact US</div>
-                        <div className='burger-submenu'>English</div>
+                {showBurgerMenu ? (
+                    <div className='burger-menu-wrapper'>
+                        <div className='burger-menu-list'>
+                            <a
+                                className='burger-submenu'
+                                href='https://docs.ngagevideoapi.com/'
+                                rel='noreferrer'
+                                target='blank'
+                                style={{ borderBottom: '1px solid grey' }}
+                            >
+                                API Docs
+                            </a>
+                            {pageState === 'page2' ? (
+                                <div
+                                    className='burger-submenu'
+                                    onClick={() => setPageState('page1')}
+                                    style={{ borderBottom: '1px solid grey' }}
+                                >
+                                    Login
+                                </div>
+                            ) : (
+                                <div
+                                    className='burger-submenu'
+                                    onClick={() => setPageState('page2')}
+                                    style={{ borderBottom: '1px solid grey' }}
+                                >
+                                    Contact US
+                                </div>
+                            )}
+                            <Dropdown overlay={menu}>
+                                <div className='burger-submenu'>
+                                    English <DownOutlined />
+                                </div>
+                            </Dropdown>
+                        </div>
                     </div>
-                </div>
+                ) : null}
 
                 {pageState === 'page2' ? (
                     <div className='body-welcome-white'>
@@ -277,8 +303,7 @@ const Login: FC = () => {
                                     value={fieldUsername}
                                 />
                                 <div
-                                    // className={classes.btnLogin}
-                                    className='btn-contact-us'
+                                    className='btn-gradient-red'
                                     style={{ width: '100%' }}
                                 >
                                     Submit
@@ -342,18 +367,8 @@ const Login: FC = () => {
                                         Jakarta, Indonesia
                                     </div>
                                 </div>
-                                <div
-                                    // className={classes.btnLogin}
-                                    className='btn-contact-us'
-                                    // style={{ width: '50%', alignSelf: 'start' }}
-                                >
-                                    Facebook
-                                </div>
-                                <div
-                                    className='btn-contact-us'
-                                    // className={classes.btnLogin}
-                                    // style={{ width: '50%', alignSelf: 'start' }}
-                                >
+                                <div className='btn-gradient-red'>Facebook</div>
+                                <div className='btn-gradient-red'>
                                     Instagram
                                 </div>
                             </div>
@@ -372,12 +387,20 @@ const Login: FC = () => {
                             Masuk
                         </div>
                         <Drawer
-                            anchor={'right'}
-                            open={drawer}
+                            placement='right'
+                            closable={false}
                             onClose={() => setDrawer(false)}
+                            visible={drawer}
+                            width={widthContainer ? '100%' : '40%'}
+                            bodyStyle={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
                         >
-                            <div className={classes.drawerWelcome}>
+                            <div className='drawer-welcome'>
                                 <IoCloseCircleOutline
+                                    size={24}
                                     style={{
                                         position: 'absolute',
                                         top: 20,
@@ -388,13 +411,12 @@ const Login: FC = () => {
                                 />
                                 <div
                                     style={{
-                                        width: '27vw',
                                         display: 'flex',
                                         flexDirection: 'column',
                                     }}
                                 >
-                                    <div className={classes.txtWelcome}>
-                                        Selamat Datang
+                                    <div className='txt-welcome'>
+                                        Selamat Datang,
                                     </div>
                                     <Input
                                         className='input1'
@@ -491,7 +513,7 @@ const Login: FC = () => {
                                         </div>
                                     </div>
                                     <div
-                                        className={classes.btnLogin}
+                                        className='btn-gradient-red'
                                         onClick={onLogin}
                                     >
                                         Masuk

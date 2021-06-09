@@ -5,6 +5,7 @@ import { IoMdHome } from 'react-icons/io';
 import { IoKeySharp, IoPlayCircle } from 'react-icons/io5';
 import { FiMonitor } from 'react-icons/fi';
 import { ImNewspaper } from 'react-icons/im';
+
 import './drawer.scss';
 
 interface Props {
@@ -39,12 +40,7 @@ const Drawer: FC<Props> = ({ isOpen, setIsOpen }) => {
                                 alt='logo'
                                 className='img-logo-drawer'
                             />
-                        ) : (
-                            <div
-                                className='img-logo-drawer'
-                                style={{ height: 81 }}
-                            />
-                        )}
+                        ) : null}
                     </div>
                     <li>
                         <NavLink
@@ -54,12 +50,7 @@ const Drawer: FC<Props> = ({ isOpen, setIsOpen }) => {
                                 isOpen ? onActiveCssClose : onActiveCssOpen
                             }
                         >
-                            <div>
-                                <IoMdHome
-                                    size={20}
-                                    style={{ marginRight: 20 }}
-                                />
-                            </div>
+                            <IoMdHome size={20} style={{ marginRight: 20 }} />
                             Home
                         </NavLink>
                     </li>
@@ -71,12 +62,7 @@ const Drawer: FC<Props> = ({ isOpen, setIsOpen }) => {
                                 isOpen ? onActiveCssClose : onActiveCssOpen
                             }
                         >
-                            <div>
-                                <IoKeySharp
-                                    size={20}
-                                    style={{ marginRight: 20 }}
-                                />
-                            </div>
+                            <IoKeySharp size={20} style={{ marginRight: 20 }} />
                             API Keys
                         </NavLink>
                     </li>
